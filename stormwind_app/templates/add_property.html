@@ -92,8 +92,10 @@
             <td>{{i.property_type}}</td>
             {% if i.city == None or i.street == None %}
             <td>Адрес не указан</td>
+            {% elif i.number_home == None %}
+            <td>{{i.city}}, улица {{i.street}}</td>
             {% else %}
-            <td>{{i.city}} {{i.street}} {{i.number_home}}</td>
+            <td>{{i.city}}, улица {{i.street}} {{i.number_home}}</td>
             {% endif %}
             <td><a href="{% url 'update_property' i.id %}">Редактировать</a></td>
             <td>

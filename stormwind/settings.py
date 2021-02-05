@@ -166,5 +166,3 @@ CORS_ALLOW_HEADERS = (
         'authorization',
         'x-csrftoken'
 )
-
-django_heroku.settings(locals())

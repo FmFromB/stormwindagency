@@ -85,10 +85,12 @@
         {% if request.user == i.author %}
         <tr>
             <th>{{i.id}}</th>
-            {% if i.property.street == None %}
+            {% if i.city == None or i.street == None %}
             <td>Адрес не указан</td>
+            {% elif i.number_home == None %}
+            <td>{{i.property.city}}, улица {{i.property.street}}</td>
             {% else %}
-            <td>{{i.property.street}} {{i.property.number_home}}</td>
+            <td>{{i.property.city}}, улица {{i.property.street}} {{i.property.number_home}}</td>
             {% endif %}
             <td><a href="{% url 'update_offer' i.id %}">Редактировать</a></td>
             <td>

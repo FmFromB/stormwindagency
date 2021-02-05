@@ -8,8 +8,8 @@ class Property(models.Model):
         ('Земля', 'Земля')
         ]
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
-    city = models.CharField('Город', max_length=15, null=True, blank=True)
-    street = models.CharField('Улица', max_length=15, null=True, blank=True)
+    city = models.CharField('Город', max_length=100, null=True, blank=True)
+    street = models.CharField('Улица', max_length=100, null=True, blank=True)
     number_home = models.PositiveIntegerField('Дом', null=True, blank=True)
     number_flat = models.PositiveIntegerField('Квартира', null=True, blank=True)
     floor = models.PositiveIntegerField('Этаж', null=True, blank=True)

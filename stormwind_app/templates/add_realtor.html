@@ -94,7 +94,7 @@
             <td><a href="{% url 'update_realtor' i.id %}">Редактировать</a></td>
             <td>
                 <form id="delete_form_{{i.id}}" action="{% url 'delete_realtor' i.id %}" method="post">{% csrf_token %}</form>
-                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Удалить</a>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Delete</a>
                 <script>
                     function delete_question_{{i.id}}() {
                         if (confirm("Вы уверены?")) {
