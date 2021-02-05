@@ -27,10 +27,10 @@ class Property(models.Model):
 
 class Client(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
-    first_name = models.CharField('Имя', max_length=100, null=True, blank=True)
-    last_name = models.CharField('Фамилия', max_length=100, null=True, blank=True)
-    middle_name = models.CharField('Отчество', max_length=100, null=True, blank=True)
-    phone = models.CharField('Телефон', max_length=100, blank=True, null=True)
+    first_name = models.CharField('Имя', max_length=100, null=True)
+    last_name = models.CharField('Фамилия', max_length=100, null=True)
+    middle_name = models.CharField('Отчество', max_length=100, null=True)
+    phone = models.CharField('Телефон', max_length=100, null=True)
     email = models.CharField('Email', max_length=100, null=True)
 
     def __str__(self):
@@ -41,7 +41,7 @@ class Realtor(models.Model):
     first_name = models.CharField('Имя', max_length=100, null=True)
     last_name = models.CharField('Фамилия', max_length=100, null=True)
     middle_name = models.CharField('Отчество', max_length=100, null=True)
-    commission = models.IntegerField('Комиссия', blank=True, null=True)
+    commission = models.IntegerField('Комиссия', null=True)
 
     def __str__(self):
         return str(self.id)
