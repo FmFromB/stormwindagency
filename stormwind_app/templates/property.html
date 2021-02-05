@@ -88,7 +88,9 @@
                     <h3 class="mb-1">Адрес не указан, {{i.property_type}}</h3>
                     {% elif i.city == None and i.street == None and i.number_home == None %}
                     <h3>Адрес не указан, {{i.property_type}}</h3>
-                    {% else %}    
+                    {% elif i.number_home == None %}
+                    <h3 class="mb-1">{{i.city}} {{i.street}}, {{i.property_type}}</h3>
+                    {% else %}
                     <h3 class="mb-1">{{i.city}} {{i.street}} {{i.number_home}}, {{i.property_type}}</h3>
                     {% endif %}
                 </div>
