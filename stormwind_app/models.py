@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class Property(models.Model):
     PROPERTY_TYPES = [
-        ('1', 'Дом'),
-        ('2', 'Квартира'),
-        ('3', 'Земля')
+        ('Дом','Дом'),
+        ('Квартира', 'Квартира'),
+        ('Земля', 'Земля')
         ]
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
     city = models.CharField('Город', max_length=15, null=True, blank=True)
@@ -67,9 +67,9 @@ class Offer(models.Model):
 
 class Req(models.Model):
     PROPERTY_TYPES = [
-        ('1','Дом'),
-        ('2', 'Квартира'),
-        ('3', 'Земля')
+        ('Дом','Дом'),
+        ('Квартира', 'Квартира'),
+        ('Земля', 'Земля')
         ]
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True, blank=True)
