@@ -91,10 +91,10 @@
             <th>{{i.id}}</th>
             <td>{{i.first_name}} - {{i.last_name}}</td>
             <td>{{i.email}}</td>
-            <td><a href="{% url 'update_client' i.id %}">Update</a></td>
+            <td><a href="{% url 'update_client' i.id %}">Редактировать</a></td>
             <td>
                 <form id="delete_form_{{i.id}}" action="{% url 'delete_client' i.id %}" method="post">{% csrf_token %}</form>
-                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Delete</a>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Удалить</a>
                 <script>
                     function delete_question_{{i.id}}() {
                         if (confirm("Are you shure")) {

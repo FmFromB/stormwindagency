@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'stormwind.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ddubr6v1qu0def',
-        'USER': 'guqirmytggugyc',
-        'PASSWORD': '4b36f0f1720a432c7bc39d28dfe19cfe2034ff266202fbbbe0f42b7371dcc21b',
+        'NAME': 'dbd63nb038dkti',
+        'USER': 'cxqkqquxvwmclv',
+        'PASSWORD': '2307ef69698c1bb69033ab44009e2700b0e4ad11be2c839fa3f366ca8cb78afb',
         'HOST': 'ec2-3-214-3-162.compute-1.amazonaws.com',
         'PORT': '5432',
     }

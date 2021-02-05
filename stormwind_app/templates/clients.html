@@ -14,60 +14,59 @@
     <title>Stormwind</title>
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">STORMWIND</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse custom_container" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item me-4">
-                    <a class="nav-link" href="/offers">Предложения</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link" href="/reqs">Запросы</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link" href="/clients">Клиенты</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link" href="/realtors">Риэлторы</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link" href="/properties">Недвижимость</a>
-                </li>
-                {% if request.user.is_authenticated %}
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link" href="/deals">Сделки</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    <a class="nav-link">{{request.user}}</a>
-                </li>
-                <li class="nav-item ms-1 me-4">
-                    {% url 'logout_page' as url_logout_page %}
-                    <a class="nav-link" href="{{url_logout_page}}">Выйти</a>
-                </li>
-                {% else %}
-                <li class="nav-item ms-4 me-4">
-                    {% url 'login_page' as url_login_page %}
-                    <a class="nav-link" href="{{url_login_page}}">Войти</a>
-                </li>
-                <li class="nav-item ms-4 me-4">
-                    {% url 'register_page' as url_register_page %}
-                    <a class="nav-link" href="{{url_register_page}}">Зарегистрироваться</a>
-                </li>
-                {% endif %}
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">STORMWIND</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse custom_container" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item me-4">
+                        <a class="nav-link" href="/offers">Предложения</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link" href="/reqs">Запросы</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link" href="/clients">Клиенты</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link" href="/realtors">Риэлторы</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link" href="/properties">Недвижимость</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link" href="/deals">Сделки</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        <a class="nav-link">{{request.user}}</a>
+                    </li>
+                    <li class="nav-item ms-1 me-4">
+                        {% url 'logout_page' as url_logout_page %}
+                        <a class="nav-link" href="{{url_logout_page}}">Выйти</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ms-4 me-4">
+                        {% url 'login_page' as url_login_page %}
+                        <a class="nav-link" href="{{url_login_page}}">Войти</a>
+                    </li>
+                    <li class="nav-item ms-4 me-4">
+                        {% url 'register_page' as url_register_page %}
+                        <a class="nav-link" href="{{url_register_page}}">Зарегистрироваться</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
     <div class="container mt-4">
         {%block content%}
         <h1 class="mb-4">Клиенты</h1>
         <ul class="nav nav-pills mb-4">
             <li class="nav-item">
-
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
@@ -81,12 +80,11 @@
         </ul>
         {%for i in clients%}
         <div class="list-group  mt-4">
-
             <a href="/detail_client/{{i.id}}" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1">{{i.first_name}} {{i.last_name}} {{i.middle_name}}</h3>
                 </div>
-                <h5 class="mb-1 mt-1">Почта: {{i.email}}</h5>
+                <h6 class="mb-1 mt-1">Email: {{i.email}}</h6>
                 <h6 class="mb-1 mt-1">Номер клиента: {{i.id}}</h6>
             </a>
         </div>

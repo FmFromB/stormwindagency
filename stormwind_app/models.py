@@ -30,7 +30,7 @@ class Client(models.Model):
     first_name = models.CharField('Имя', max_length=100, null=True, blank=True)
     last_name = models.CharField('Фамилия', max_length=100, null=True, blank=True)
     middle_name = models.CharField('Отчество', max_length=100, null=True, blank=True)
-    phone = models.IntegerField('Телефон', blank=True, null=True)
+    phone = models.CharField('Телефон', max_length=100, blank=True, null=True)
     email = models.CharField('Email', max_length=100, null=True)
 
     def __str__(self):

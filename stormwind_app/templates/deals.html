@@ -80,12 +80,31 @@
             {% endif %}
         </ul>
         {%for i in deals%}
-        <div class="list-group  mt-4">
-            <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">Пользователь: {{i.offer}} {{i.requrement.property_deal}}</h3>
+        <div class="list-group mt-4">
+            <div class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h3>
+                        Предложение предоствил клиент: {{i.offer.client.first_name}} {{i.offer.client.last_name}}
+                    </h3>
+                </div>
+                <h4>Номер клиента: {{i.offer.client.id}}</h4>
+                <h6>Предлогает недвижимость типа: {{i.offer.property.property_type}}</h6>
+                <div class="mt-4">
+                    <h3 class="mb-1">
+                        Запрос составил клиент: {{i.req.client.first_name}} {{i.req.client.last_name}}
+                    </h3>
+                </div>
+                <h4>Номер клиента: {{i.req.client.id}}</h4>
+                <h6>Нуждается в недвижимости типа: {{i.req.property_type}}</h6>
+                <div class="mt-4">
+                    <h3 class="mb-1">
+                        За сделку отвечают риэлторы: {{i.req.realtor.first_name}} {{i.req.realtor.last_name}}
+                        и {{i.offer.realtor.first_name}} {{i.offer.realtor.last_name}}
+                    </h3>
+                </div>
             </div>
-        </div>
         {%endfor%}
         {%endblock content%}
     </div>
 </body>
+</html>
