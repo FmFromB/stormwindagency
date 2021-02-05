@@ -3,7 +3,12 @@ from django.contrib.auth.models import User
 
 
 
-class Property(models.Model): 
+class Property(models.Model):
+    PROPERTY_TYPES = [
+        ('1', 'Дом'),
+        ('2', 'Квартира'),
+        ('3', 'Земля')
+        ]
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
     city = models.CharField('Город', max_length=15, null=True, blank=True)
     street = models.CharField('Улица', max_length=15, null=True, blank=True)
@@ -13,7 +18,7 @@ class Property(models.Model):
     rooms = models.IntegerField('Количество комнат', null=True, blank=True)
     area = models.IntegerField('Площадь')
     floor_count = models.IntegerField('Количество этажей', null=True, blank=True)
-    property_type = models.CharField('Тип собственности', max_length=20, null=True, blank=True)
+    property_type = models.CharField('Тип собственности', choices=PROPERTY_TYPES, max_length=20, null=True, blank=True)
 
     class Meta:
         verbose_name='запрос'
@@ -61,10 +66,15 @@ class Offer(models.Model):
         return str(self.id)
 
 class Req(models.Model):
+    PROPERTY_TYPES = [
+        ('1','Дом'),
+        ('2', 'Квартира'),
+        ('3', 'Земля')
+        ]
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True, blank=True)
     realtor = models.ForeignKey(Realtor, on_delete=models.CASCADE, verbose_name='Номер риэлтора', null=True, blank=True)
-    property_type = models.CharField('Тип имущества', max_length=100, blank=True, null=True)
+    property_type = models.CharField('Тип имущества', choices=PROPERTY_TYPES, max_length=100, blank=True, null=True)
     min_price = models.IntegerField('Цена от', blank=True, null=True)
     max_price = models.IntegerField('До', blank=True, null=True)
     min_area = models.IntegerField('Минимальная площадь (кв. метров)', blank=True, null=True)
