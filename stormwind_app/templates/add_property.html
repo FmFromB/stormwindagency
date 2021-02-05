@@ -90,7 +90,11 @@
         <tr>
             <th>{{i.id}}</th>
             <td>{{i.property_type}}</td>
-            <td>{{i.city}}, {{i.street}}</td>
+            {% if i.city == None or i.street == None %}
+            <td>Адрес не указан</td>
+            {% else %}
+            <td>{{i.city}} {{i.street}} {{i.number_home}}</td>
+            {% endif %}
             <td><a href="{% url 'update_property' i.id %}">Редактировать</a></td>
             <td>
                 <form id="delete_form_{{i.id}}" action="{% url 'delete_property' i.id %}" method="post">{% csrf_token %}</form>
