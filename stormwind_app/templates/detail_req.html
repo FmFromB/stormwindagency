@@ -70,8 +70,8 @@
         <p>Максимальная цена: {{get_req.max_price}}</p>
         <p>Минимальная площадь: {{get_req.min_area}}</p>
         <p>Максимальная площадь: {{get_req.max_area}}</p>
-        {% endif %}
-        {% if get_req.property_type == "Квартира" %}
+
+        {% elif get_req.property_type == "Квартира" %}
         <p>Минимальная цена: {{get_req.min_price}}</p>
         <p>Максимальная цена: {{get_req.max_price}}</p>
         <p>Минимальная площадь: {{get_req.min_area}}</p>
@@ -80,8 +80,8 @@
         <p>Максимальный этаж: {{get_req.max_floor}}</p>
         <p>Минимальная кол-во комнат: {{get_req.min_room_count}}</p>
         <p>Максимальная кол-во комнат: {{get_req.min_room_count}}</p>
-        {% endif %}
-        {% if get_req.property_type == "Дом" %}
+
+        {% elif get_req.property_type == "Дом" %}
         <p>Минимальная цена: {{get_req.min_price}}</p>
         <p>Максимальная цена: {{get_req.max_price}}</p>
         <p>Минимальная площадь: {{get_req.min_area}}</p>

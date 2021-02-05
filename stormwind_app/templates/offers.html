@@ -65,14 +65,11 @@
     <div class="container mt-4">
         {%block content%}
         <h1 class="mb-4">Предложения</h1>
-
         <ul class="nav nav-pills mb-4">
-            <li class="nav-item">
-
-            </li>
+            <li class="nav-item"></li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link btn-secondary" href="/add_offer">редактировать/добавить предложение</a>
+                <a class="nav-link btn-secondary" href="/add_offer">Добавить/редактировать предложение</a>
             </li>
             {% else %}
             <a class="nav-link btn-secondary" href="/login_page">Чтобы добавлять и редактировать предложения необходимо войти</a>
@@ -80,7 +77,6 @@
         </ul>
         {%for i in offers%}
         <div class="list-group  mt-4">
-
             <a href="/detail/{{i.id}}" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1">{{i.property.street}} {{i.property.number_home}}, {{i.property.property_type}}</h3>

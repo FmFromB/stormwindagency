@@ -46,7 +46,6 @@ class Realtor(models.Model):
     def __str__(self):
         return str(self.id)
 
-
 class Offer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True)
@@ -72,16 +71,16 @@ class Req(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True)
     realtor = models.ForeignKey(Realtor, on_delete=models.CASCADE, verbose_name='Номер риэлтора', null=True)
     property_type = models.CharField('Тип имущества', choices=PROPERTY_TYPES, max_length=100)
-    min_price = models.IntegerField('Цена от', blank=True, null=True)
-    max_price = models.IntegerField('До', blank=True, null=True)
-    min_area = models.IntegerField('Минимальная площадь (кв. метров)', blank=True, null=True)
-    max_area = models.IntegerField('Максимальная площадь (кв. метров)', blank=True, null=True)
-    min_room_count = models.IntegerField('Минимальное количество комнат', blank=True, null=True)
-    max_room_count = models.IntegerField('Максимальное количество комнат', blank=True, null=True)
-    min_floor = models.IntegerField('Этаж от', blank=True, null=True)
-    max_floor = models.IntegerField('До', blank=True, null=True)
-    min_floor_count = models.IntegerField('Количество этажей от', blank=True, null=True)
-    max_floor_count = models.IntegerField('До', blank=True, null=True)
+    min_price = models.IntegerField('Цена от', null=True)
+    max_price = models.IntegerField('До', null=True)
+    min_area = models.IntegerField('Минимальная площадь (кв. метров)', null=True)
+    max_area = models.IntegerField('Максимальная площадь (кв. метров)', null=True)
+    min_room_count = models.IntegerField('Минимальное количество комнат', null=True)
+    max_room_count = models.IntegerField('Максимальное количество комнат', null=True)
+    min_floor = models.IntegerField('Этаж от', null=True)
+    max_floor = models.IntegerField('До', null=True)
+    min_floor_count = models.IntegerField('Количество этажей от', null=True)
+    max_floor_count = models.IntegerField('До', null=True)
 
     def __str__(self):
         return str(self.id)

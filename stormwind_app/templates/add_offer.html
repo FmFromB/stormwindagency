@@ -85,7 +85,11 @@
         {% if request.user == i.author %}
         <tr>
             <th>{{i.id}}</th>
+            {% if i.property.street == None %}
+            <td>Адрес не указан</td>
+            {% else %}
             <td>{{i.property.street}} {{i.property.number_home}}</td>
+            {% endif %}
             <td><a href="{% url 'update_offer' i.id %}">Редактировать</a></td>
             <td>
                 <form id="delete_form_{{i.id}}" action="{% url 'delete_offer' i.id %}" method="post">{% csrf_token %}</form>

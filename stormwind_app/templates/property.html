@@ -72,7 +72,7 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link btn-secondary" href="/add_property">Добавить недвижимость</a>
+                <a class="nav-link btn-secondary" href="/add_property">Добавить/редактировать недвижимость</a>
             </li>
             {% else %}
             <a class="nav-link btn-secondary" href="/login_page">
@@ -84,7 +84,13 @@
         <div class="list-group  mt-4">
             <a href="/detail_property/{{i.id}}" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
+                    {% if i.city == None and i.street == None %}
+                    <h3 class="mb-1">Адрес не указан, {{i.property_type}}</h3>
+                    {% elif i.city == None and i.street == None and i.number_home == None %}
+                    <h3>Адрес не указан, {{i.property_type}}</h3>
+                    {% else %}    
                     <h3 class="mb-1">{{i.city}} {{i.street}} {{i.number_home}}, {{i.property_type}}</h3>
+                    {% endif %}
                 </div>
                 <h6 class="mb-1">Площадь: {{i.area}} кв.м.</h6>
                 <h6 class="mb-1">Номер недвижимости: {{i.id}}</h6>
