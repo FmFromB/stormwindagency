@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import psycopg2
 from whitenoise import WhiteNoise
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -165,3 +166,5 @@ CORS_ALLOW_HEADERS = (
         'authorization',
         'x-csrftoken'
 )
+
+django_heroku.settings(locals())
