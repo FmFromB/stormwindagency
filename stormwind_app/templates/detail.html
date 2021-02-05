@@ -63,7 +63,7 @@
     </div>
 </nav>
     <div class="container mt-4 text_upper">
-        {% get_offer.property.street == None %}
+        {% if get_offer.property.street == None %}
         <h1>Адрес не указан</h1>
         {% else %}
         <h1>Адрес: {{get_offer.property.street}} {{get_offer.property.number_home}}</h1>
