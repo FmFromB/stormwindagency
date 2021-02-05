@@ -85,7 +85,7 @@
         {% if request.user == i.author %}
         <tr>
             <th>{{i.id}}</th>
-            {% if i.city == None or i.street == None %}
+            {% if i.property.city == None or i.property.street == None %}
             <td>Адрес не указан</td>
             {% elif i.number_home == None %}
             <td>{{i.property.city}}, улица {{i.property.street}}</td>
