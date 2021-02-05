@@ -77,7 +77,7 @@
         <p class="mt-4">Площадь {{get_property.area}} кв.м.</p>
         <p class="mt-4">Комнаты {{get_property.rooms}}</p>
         <p class="mt-4">Кол-во этажей {{get_property.floor}}</p>
-        {% else %}
+        {% elif get_property.property_type == "Дом" %}
         <p class="mt-4">Площадь {{get_property.area}} кв.м.</p>
         <p class="mt-4">Комнаты {{get_property.rooms}}</p>
         <p class="mt-4">Кол-во этажей {{get_property.floor}}</p>
