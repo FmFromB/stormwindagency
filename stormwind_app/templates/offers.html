@@ -79,8 +79,11 @@
         <div class="list-group  mt-4">
             <a href="/detail/{{i.id}}" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
+                    {% if i.property.street == None %}
+                    <h3 class="mb-1">Адрес не указан, {{i.property.property_type}}</h3>
+                    {% else %}
                     <h3 class="mb-1">{{i.property.street}} {{i.property.number_home}}, {{i.property.property_type}}</h3>
-                    <small></small>
+                    {% endif %}
                 </div>
                 <h5 class="mb-1 mt-1">Цена {{i.price}}, цена с учетом процентов: {{i.price_percent}}</h5>
                 <h5 class="mb-1 mt-1">Площадь {{i.property.area}} кв.м</h5>
