@@ -64,10 +64,16 @@
 </nav>
     <div class="container mt-4 text_upper">
         <h1>Адрес: {{get_offer.property.street}} {{get_offer.property.number_home}}</h1>
+        {% if get_req.property_type == "Земля" %}
+        <p>Площадь: {{get_offer.property.area}}</p>
+        <p>Цена: {{get_offer.price}}</p>
+        <p>Цена c учетом процентов: {{get_offer.price_percent}}</p>
+        {% else %}
         <p>Площадь: {{get_offer.property.area}}</p>
         <p>Количество комнат: {{get_offer.property.rooms}}</p>
         <p>Цена: {{get_offer.price}}</p>
         <p>Цена c учетом процентов: {{get_offer.price_percent}}</p>
+        {% endif %}
         <a class="rounded nav-link btn-secondary" href="/offers">Назад</a>
     </div>
 </body>

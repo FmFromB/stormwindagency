@@ -65,9 +65,14 @@
     <div class="container mt-4 text_upper">
         <h1>Тип Недвижимости: {{get_property.property_type}}</h1>
         <h2>Адрес: {{get_property.street}} {{get_property.number_home}}</h2>
-        <h2>Этаж: {{get_property.number_flat}}</h2>
         {% if get_property.property_type == "Земля" %}
         <p class="mt-4">Площадь {{get_property.area}}</p>
+        {% endif %}
+        {% if get_property.property_type == "Квартира" %}
+        <p class="mt-4">Номер квартиры {{get_property.number_flat}}</p>
+        <p class="mt-4">Площадь {{get_property.area}}</p>
+        <p class="mt-4">Комнаты {{get_property.rooms}}</p>
+        <p class="mt-4">Кол-во этажей {{get_property.floor}}</p>
         {% else %}
         <p class="mt-4">Площадь {{get_property.area}}</p>
         <p class="mt-4">Комнаты {{get_property.rooms}}</p>

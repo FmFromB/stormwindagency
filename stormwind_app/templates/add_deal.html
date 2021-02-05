@@ -85,6 +85,7 @@
     </thead>
     <tbody>
         {% for i in list_deals%}
+        {% if request.user == i.author %}
         <tr>
             <th>{{i.id}}</th>
             <td>{{i.offer.id}}</td>
@@ -101,6 +102,7 @@
                 </script>
             </td>
         </tr>
+        {% endif %}
         {% endfor %}
     </tbody>
 </table>
