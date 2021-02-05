@@ -1,0 +1,89 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+
+
+class Property(models.Model): 
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
+    city = models.CharField('Город', max_length=15, null=True, blank=True)
+    street = models.CharField('Улица', max_length=15, null=True, blank=True)
+    number_home = models.IntegerField('Дом', null=True, blank=True)
+    number_flat = models.IntegerField('Квартира', null=True, blank=True)
+    floor = models.IntegerField('Этаж', null=True, blank=True)
+    rooms = models.IntegerField('Количество комнат', null=True, blank=True)
+    area = models.IntegerField('Площадь')
+    floor_count = models.IntegerField('Количество этажей', null=True, blank=True)
+    property_type = models.CharField('Тип собственности', max_length=20, null=True, blank=True)
+
+    class Meta:
+        verbose_name='запрос'
+        verbose_name_plural='запросы'
+
+    def __str__(self):
+        return str(self.id)
+
+class Client(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
+    first_name = models.CharField('Имя', max_length=100, null=True, blank=True)
+    last_name = models.CharField('Фамилия', max_length=100, null=True, blank=True)
+    middle_name = models.CharField('Отчество', max_length=100, null=True, blank=True)
+    phone = models.IntegerField('Телефон', blank=True, null=True)
+    email = models.CharField('Email', max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.id)
+
+class Realtor(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто добавил', null=True, blank=True)
+    first_name = models.CharField('Имя', max_length=100, null=True, blank=True)
+    last_name = models.CharField('Фамилия', max_length=100, null=True, blank=True)
+    middle_name = models.CharField('Отчество', max_length=100, null=True, blank=True)
+    commission = models.IntegerField('Комиссия', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class Offer(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True, blank=True)
+    realtor = models.ForeignKey(Realtor, on_delete=models.CASCADE, verbose_name='Номер риэлтора', null=True, blank=True)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, verbose_name='Номер недвижимости', null=True, blank=True)
+    price = models.IntegerField('Цена', blank=True, null=True)
+    price_percent = models.IntegerField('Цена c процентами', blank=True, null=True)
+    address = models.IntegerField('[ppfxtv', blank=True, null=True)
+
+    class Meta:
+        verbose_name='предложение'
+        verbose_name_plural='Предложения'
+
+    def __str__(self):
+        return str(self.id)
+
+class Req(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор обьявления', null=True, blank=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Номер клиента', null=True, blank=True)
+    realtor = models.ForeignKey(Realtor, on_delete=models.CASCADE, verbose_name='Номер риэлтора', null=True, blank=True)
+    property_type = models.CharField('Тип имущества', max_length=100, blank=True, null=True)
+    min_price = models.IntegerField('Цена от', blank=True, null=True)
+    max_price = models.IntegerField('До', blank=True, null=True)
+    min_area = models.IntegerField('Минимальная площадь (кв. метров)', blank=True, null=True)
+    max_area = models.IntegerField('Максимальная площадь (кв. метров)', blank=True, null=True)
+    min_room_count = models.IntegerField('Минимальное количество комнат', blank=True, null=True)
+    max_room_count = models.IntegerField('Максимальное количество комнат', blank=True, null=True)
+    min_floor = models.IntegerField('Этаж от', blank=True, null=True)
+    max_floor = models.IntegerField('До', blank=True, null=True)
+    min_floor_count = models.IntegerField('Количество этажей от', blank=True, null=True)
+    max_floor_count = models.IntegerField('До', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+class Deal(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор сделки', null=True, blank=True)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, verbose_name='Номер предложения', null=True, blank=True)
+    req = models.ForeignKey(Req, on_delete=models.CASCADE, verbose_name='Номер запроса', null=True, blank=True)
+
+
+
+

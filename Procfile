@@ -1,0 +1,1 @@
+web: gunicorn stormwind.wsgi --log-file -

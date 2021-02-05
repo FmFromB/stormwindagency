@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>Stormwind</title>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">STORMWIND</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse custom_container" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="/offers">Offers</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/reqs">Reqs</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/clients">Clients</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/realtors">Realtors</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/properties">Property</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/deals">Deals</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link">{{request.user}}</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    {% url 'logout_page' as url_logout_page %}
+                    <a class="nav-link" href="{{url_logout_page}}">Log out</a>
+                </li>
+                {% else %}
+                <li class="nav-item ms-4 me-4">
+                    {% url 'login_page' as url_login_page %}
+                    <a class="nav-link" href="{{url_login_page}}">Log in</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    {% url 'register_page' as url_register_page %}
+                    <a class="nav-link" href="{{url_register_page}}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container mt-4">
+        <h1>Offers</h1>
+
+
+        {%for i in offers%}
+        <ul class="list-group mt-4 ">
+            <li class="list-group-item">
+                <b>{{i.address}}</b>
+                <span class="m-2">{{i.property_type}}</span>
+                <span>{{i.price}}</span>
+                <span class="float-end me-1"><a href="/detail/{{i.id}}">Go to offer</a></span>
+            </li>
+        </ul>
+
+        {%endfor%}
+    </div>
+</body>
+</html>

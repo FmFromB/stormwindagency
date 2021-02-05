@@ -1,0 +1,128 @@
+{% extends 'deals.html' %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">STORMWIND</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse custom_container" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="/offers">Предложения</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/reqs">Запросы</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/clients">Клиенты</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/realtors">Риэлторы</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/properties">Недвижимость</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/deals">Сделки</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link">{{request.user}}</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    {% url 'logout_page' as url_logout_page %}
+                    <a class="nav-link" href="{{url_logout_page}}">Выйти</a>
+                </li>
+                {% else %}
+                <li class="nav-item ms-4 me-4">
+                    {% url 'login_page' as url_login_page %}
+                    <a class="nav-link" href="{{url_login_page}}">Войти</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    {% url 'register_page' as url_register_page %}
+                    <a class="nav-link" href="{{url_register_page}}">Зарегистрироваться</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{%block content%}
+<h1 class="mg-4">История моих сделок</h1>
+<p><a href="/deals">Назад</a></p>
+<button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Добавить сделку
+</button>
+{% if success %}
+<p style="color:green">Сделка добавлена</p>
+{% endif %}
+{% if message %}
+<div class="alert alert-success">
+    {% for m in messages %}
+    {{m}}
+    {% endfor %}
+</div>
+{% endif %}
+{% if update %}
+{% if success_update %}
+<p style="color:green">Deal updated</p>
+{% endif %}
+<h2>Update deal</h2>
+<form id="update_deal" method="post">
+    {% csrf_token %}
+    {{form}}
+</form>
+<button form="update_deal" type="submit" class="btn btn-dark mt-4">Update</button>
+{% else %}
+<table class="table table-bordered mg-4">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Предложение</th>
+            <th scope="col">Запрос</th>
+            <th scope="col">Завершить</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in list_deals%}
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.offer.id}}</td>
+            <td>{{i.req}}</td>
+            <td>
+                <form id="delete_form_{{i.id}}" action="{% url 'delete_deal' i.id %}" method="post">{% csrf_token %}</form>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
+                <script>
+                    function delete_question_{{i.id}}() {
+                        if (confirm("Вы уверены")) {
+                            document.getElementById('delete_form_{{i.id}}').submit()
+                        }
+                    }
+                </script>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add deal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="add_form" method="post">
+                    {% csrf_token %}
+                    {{form}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button form="add_form" type="submit" class="btn btn-dark">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

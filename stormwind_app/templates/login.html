@@ -1,0 +1,77 @@
+﻿<!doctype html>
+ {% load static %}
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static '/style.css' %}" />
+    <title>Stormwind</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border_nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">STORMWIND</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse custom_container" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="/offers">Предложения</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/reqs">Запросы</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/clients">Клиенты</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/realtors">Риэлторы</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/properties">Недвижимость</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link" href="/deals">Сделки</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    <a class="nav-link">{{request.user}}</a>
+                </li>
+                <li class="nav-item ms-1 me-4">
+                    {% url 'logout_page' as url_logout_page %}
+                    <a class="nav-link" href="{{url_logout_page}}">Выйти</a>
+                </li>
+                {% else %}
+                <li class="nav-item ms-4 me-4">
+                    {% url 'login_page' as url_login_page %}
+                    <a class="nav-link" href="{{url_login_page}}">Войти</a>
+                </li>
+                <li class="nav-item ms-4 me-4">
+                    {% url 'register_page' as url_register_page %}
+                    <a class="nav-link" href="{{url_register_page}}">Зарегистрироваться</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container mt-4">
+        <h1 class="mt-4">Вход</h1>
+        <div class="container mt-4">
+            <form id="update_req" method="post">
+                {% csrf_token %}
+                {{form}}
+                <button form="update_req" type="submit" class="btn btn-dark mt-4">Войти</button>
+            </form>
+            <p class="mt-4"><a href="/register_page"> Еще нет аккаунта? Зарегестрироваться</a></p>
+            <p><a href="/">На главную</a></p>
+        </div>
+    </div>
+</body>
