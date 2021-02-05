@@ -94,7 +94,7 @@
             <td><a href="{% url 'update_realtor' i.id %}">Редактировать</a></td>
             <td>
                 <form id="delete_form_{{i.id}}" action="{% url 'delete_realtor' i.id %}" method="post">{% csrf_token %}</form>
-                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Delete</a>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">Удалить</a>
                 <script>
                     function delete_question_{{i.id}}() {
                         if (confirm("Вы уверены?")) {
@@ -113,7 +113,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Добавть риэлтора</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Добавить риэлтора</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
